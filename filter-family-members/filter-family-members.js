@@ -51,6 +51,19 @@
 
 
 var filterFamilyMembers = function (familyTree, truthTest) {
-  // All your code in this function body
+  var newArr = [];
+  
+  for(var key in familyTree){ // What i am trying to do is iterate over the object 
+    if(Array.isArray(familyTree[key])){ // And if the one of the values is an array
+        filterFamilyMembers(familyTree[key], truthTest); // We re-invoke the function with this value
+    }
+
+    // The problem Here which is the this condition i don't know what am i missing 
+    if(truthTest(familyTree[key])){ // What i am trying to do is if the condition is true (which is the function it return either true or false)
+       newArr.push(familyTree[key]); // Push it !
+    }
+  }
+
+  return newArr;
 };
 
